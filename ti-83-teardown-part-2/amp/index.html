@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html amp lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>TI-83 Teardown, Part 2</title>
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+    <link rel="shortcut icon" href="/favicon.png" type="image/png" />
+    <link rel="canonical" href="http://parzivail.com/ti-83-teardown-part-2/" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    
+    <meta property="og:site_name" content="Parzivail" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="TI-83 Teardown, Part 2" />
+    <meta property="og:description" content="Finally getting to the pixie wrangling and commanding the LCD to display images." />
+    <meta property="og:url" content="http://parzivail.com/ti-83-teardown-part-2/" />
+    <meta property="og:image" content="http://parzivail.com/content/images/2018/08/DSC_0046_small.jpg" />
+    <meta property="article:published_time" content="2018-08-18T02:56:31.000Z" />
+    <meta property="article:modified_time" content="2018-08-18T03:01:56.000Z" />
+    <meta property="article:tag" content="project" />
+    <meta property="article:tag" content="arduino" />
+    <meta property="article:tag" content="programming" />
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="TI-83 Teardown, Part 2" />
+    <meta name="twitter:description" content="Finally getting to the pixie wrangling and commanding the LCD to display images." />
+    <meta name="twitter:url" content="http://parzivail.com/ti-83-teardown-part-2/" />
+    <meta name="twitter:image" content="http://parzivail.com/content/images/2018/08/DSC_0046_small.jpg" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="Colby Newman" />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="project, arduino, programming" />
+    <meta name="twitter:site" content="@parzivail" />
+    <meta name="twitter:creator" content="@parzivail" />
+    <meta property="og:image:width" content="1418" />
+    <meta property="og:image:height" content="798" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Parzivail",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "http://parzivail.com/content/images/2018/08/avatar_parzi_no_bgnd-1.png",
+            "width": 60,
+            "height": 60
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Colby Newman",
+        "image": {
+            "@type": "ImageObject",
+            "url": "//www.gravatar.com/avatar/25092a442f00067d7dfa2e08eaa6e315?s=250&d=mm&r=x",
+            "width": 250,
+            "height": 250
+        },
+        "url": "http://parzivail.com/author/colby/",
+        "sameAs": [
+            "https://parzivail.com",
+            "https://twitter.com/parzivail"
+        ]
+    },
+    "headline": "TI-83 Teardown, Part 2",
+    "url": "https://parzivail.com/ti-83-teardown-part-2/",
+    "datePublished": "2018-08-18T02:56:31.000Z",
+    "dateModified": "2018-08-18T03:01:56.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "http://parzivail.com/content/images/2018/08/DSC_0046_small.jpg",
+        "width": 1418,
+        "height": 798
+    },
+    "keywords": "project, arduino, programming",
+    "description": "Finally getting to the pixie wrangling and commanding the LCD to display images.",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://parzivail.com/"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 2.16" />
+    <link rel="alternate" type="application/rss+xml" title="Parzivail" href="https://parzivail.com/rss/" />
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,600,400" />
+
+    <style amp-custom>.u-bgColor{background-color:#4285f4}.u-flexCenter{-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex}.u-block{display:block}.u-relative{position:relative}.u-overflowHidden{overflow:hidden}.u-fontSizeSmaller{font-size:14px}.u-flex1{-webkit-box-flex:1;-ms-flex:1 1 auto;flex:1 1 auto}.u-absolute{position:absolute}.u-textCenter{text-align:center}.u-container{margin-left:auto;margin-right:auto;padding-left:20px;padding-right:20px}.u-textColorNormal{color:rgba(0,0,0,.44);fill:rgba(0,0,0,.44)}*,:after,:before{-webkit-box-sizing:border-box;box-sizing:border-box}a{color:inherit;text-decoration:none}a:active,a:hover{outline:0}body{color:rgba(0,0,0,.8);font-family:Source Sans Pro,sans-serif;font-size:18px;font-style:normal;font-weight:400;letter-spacing:0;line-height:1.4;margin:0 auto;text-rendering:optimizeLegibility}blockquote{border-left:3px solid rgba(0,0,0,.8);font-style:italic;letter-spacing:-.003em;margin-left:-5px;margin-right:0;padding-bottom:2px;padding-left:20px}h1,h2,h3,h4,h5,h6{font-family:Source Sans Pro,sans-serif;font-style:normal;font-weight:700;letter-spacing:-.028em;line-height:1.1;margin:32px 0 0}h1{font-size:32px}h2{font-size:30px}h3{font-size:28px}h4{font-size:22px}h5{font-size:20px}h6{font-size:18px}hr{border:0;display:block;margin:50px auto;text-align:center;overflow:visible;height:0}hr:before{color:rgba(0,0,0,.6);content:"...";display:inline-block;font-family:Source Sans Pro,sans-serif;font-size:28px;font-weight:400;letter-spacing:.6em;position:relative;top:-30px}mark{background-color:transparent;background-image:-webkit-gradient(linear,left top,left bottom,from(#d7fdd3),to(#d7fdd3));background-image:-webkit-linear-gradient(top,#d7fdd3,#d7fdd3);background-image:-o-linear-gradient(top,#d7fdd3,#d7fdd3);background-image:linear-gradient(180deg,#d7fdd3,#d7fdd3);color:rgba(0,0,0,.8)}ol,p,ul{margin:0}ol,ul{list-style:none;list-style-image:none;padding:0}p code{border-radius:4px;color:#c7254e;padding:4px 6px;text-shadow:0 1px #fff}p code,pre{background:#efefef}pre{border-radius:3px;padding:10px;overflow-x:auto;font-size:14px}.fluid-width-video-wrapper,amp-iframe,iframe{margin-top:30px}.svg-icon{width:auto;height:20px;fill:rgba(0,0,0,.8);stroke:none}.main-header{position:fixed;top:0;width:100%;z-index:1000}.blog-title{height:50px;line-height:0}.logo-link{color:#fff;font-size:24px;font-weight:600}.hamburgermenu{background-color:transparent;border:none;padding:0;height:48px;position:relative;-webkit-transition:-webkit-transform .4s;transition:-webkit-transform .4s;-o-transition:-o-transform .4s;transition:transform .4s;transition:transform .4s,-webkit-transform .4s,-o-transform .4s;width:48px;margin-right:-12px}.hamburgermenu span{background-color:#fff;display:block;height:2px;left:14px;margin-top:-1px;position:absolute;top:50%;width:20px}.hamburgermenu span:first-child{-webkit-transform:translateY(-6px);-o-transform:translateY(-6px);transform:translateY(-6px)}.hamburgermenu span:last-child{-webkit-transform:translateY(6px);-o-transform:translateY(6px);transform:translateY(6px)}.sidebar{width:280px;background:#eee}.sidebar ul{margin:18px 0 20px}.sidebar ul li a{display:block;margin-bottom:5px;padding:6px 20px}.sidebar .follow{border-top:1px solid #ddd}.close-sidebar{height:50px;font-size:25px;line-height:50px;text-align:right;padding-right:20px;color:#fff}.author{border-radius:50%;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:0 0 auto}.author-avatar{height:60px;width:60px}.author-image{left:50%;top:50%;-webkit-transform:translate(-50%,-50%);-o-transform:translate(-50%,-50%);transform:translate(-50%,-50%);width:100%}.author-left{padding-left:15px;font-size:16px}.author-bio{text-overflow:ellipsis;white-space:nowrap}.main{margin:auto;max-width:600px;padding-top:50px}.article-header,.article-title{margin-top:20px}.article-title{line-height:1.04}.article-excerpt{color:rgba(0,0,0,.44);font-size:20px;letter-spacing:-.022em;line-height:1.22;margin-bottom:20px;margin-top:10px}.article-image{margin-right:-20px;margin-left:-20px}.article-tags{padding:30px 0 0}.article-tags a{background:rgba(0,0,0,.08);border-radius:3px;color:rgba(0,0,0,.6);display:inline-block;font-size:14px;height:37px;line-height:35px;padding:0 16px;margin:0 8px 8px 0}.article-body{font-family:Droid Serif,serif;font-size:18px;font-weight:400;letter-spacing:-.004em;line-height:1.58}.article-body a{background-image:-webkit-gradient(linear,left top,left bottom,color-stop(50%,rgba(0,0,0,.6)),color-stop(0,transparent));background-image:-webkit-linear-gradient(top,rgba(0,0,0,.6) 50%,transparent 0);background-image:-o-linear-gradient(top,rgba(0,0,0,.6) 50%,transparent 0);background-image:linear-gradient(180deg,rgba(0,0,0,.6) 50%,transparent 0);background-position:0 1.07em;background-repeat:repeat-x;background-size:2px .1em;text-decoration:none}.article-body p{margin-top:28px}.article-body ol,.article-body ul{counter-reset:post;margin-top:20px}.article-body ol li,.article-body ul li{letter-spacing:-.003em;line-height:1.58;margin-left:30px}.article-body ol li:before,.article-body ul li:before{-webkit-box-sizing:border-box;box-sizing:border-box;display:inline-block;margin-left:-78px;position:absolute;text-align:right;width:78px}.article-body ul li:before{content:"\2022";font-size:16.8px;padding-right:15px;padding-top:4px}.article-body ol li:before{content:counter(post) ".";counter-increment:post;padding-right:12px}.kg-card-markdown>p:first-of-type:first-letter{float:left;font-size:50px;font-style:normal;font-weight:700;letter-spacing:-.03em;line-height:.83;margin-bottom:-.08em;margin-left:-5px;margin-right:7px;padding-top:7px;text-transform:uppercase}.related{padding-top:20px;padding-bottom:20px;margin-top:40px;background:#fafafa}.related-title{border-bottom:1px solid rgba(0,0,0,.15);margin-bottom:30px}.related-title span{border-bottom:1px solid rgba(0,0,0,.54);color:rgba(0,0,0,.84);display:inline-block;font-size:18px;font-weight:600;padding-bottom:20px}.story:nth-child(3n) .story-border{border-color:#f59e00}.story:nth-child(3n+2) .story-border{border-color:#26a8ed}.story-link{background-color:#fff;border-bottom:1px solid rgba(0,0,0,.04);-webkit-box-shadow:0 1px 7px rgba(0,0,0,.05);box-shadow:0 1px 7px rgba(0,0,0,.05);min-height:50px;padding:15px 15px 15px 55px}.story-title{line-height:1.1;font-size:18px;font-weight:400;margin:0}.story-border{border-left:3px solid #00a034;bottom:0;color:rgba(0,0,0,.2);font-family:Droid Serif,serif;font-size:28px;font-weight:700;left:0;padding:15px 10px 10px;top:0}.footer{background-color:#fafafa;color:rgba(0,0,0,.44);font-weight:600;padding-top:20px;padding-bottom:45px}.copyright{font-size:14px}.copyright a{color:rgba(0,0,0,.7)}.follow{padding:20px}.follow a{padding:0 7px;display:inline-block;vertical-align:middle}.share{margin:15px 0 0;height:26px}.share ul{display:-webkit-box;display:-ms-flexbox;display:flex;height:26px}.share li{width:25%;margin:0 2px}.share li svg{width:100%;height:100%;display:block;fill:#fff}.share li.fb{background-color:#45619d}.share li.tw{background-color:#00acee}.share li.wa{background-color:#0f9938}.share li.gplus{background-color:#f63e28}</style>
+
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
+    <script async custom-element="amp-auto-ads"
+            src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+
+    
+</head>
+
+<body class="amp-template">
+    <amp-auto-ads type="adsense"
+                  data-ad-client="ca-pub-3684630393936871">
+    </amp-auto-ads>
+    <amp-sidebar id="sidebar1" class="sidebar" layout="nodisplay" side="right">
+        <div role="button" aria-label="close sidebar" on="tap:sidebar1.toggle" tabindex="0" class="close-sidebar u-bgColor">✕</div>
+
+        <ul class="u-unstyled">
+        <li><a href="https://parzivail.com/" class="navigation-link ">Home</a></li>
+        <li><a href="https://parzivail.com/about/" class="navigation-link ">About</a></li>
+        <li><a href="https://pswg.dev/" class="navigation-link ">Galaxies: Parzi&#x27;s Star Wars Mod</a></li>
+        <li><a href="http://input.parzivail.com" class="navigation-link ">InputDebug</a></li>
+</ul>
+
+
+        <div class="follow">
+
+                <a href="https://twitter.com/parzivail" rel="nofollow" target="_blank"><svg class="svg-icon" viewBox="0 0 18 18" width="100%" height="100%"><path d="M12.077 2c-1.812 0-3.282 1.582-3.282 3.534 0 .277.03.547.085.806-2.728-.148-5.147-1.555-6.766-3.693-.283.522-.445 1.13-.445 1.777 0 1.226.58 2.308 1.46 2.942-.54-.02-1.05-.178-1.49-.443v.045c0 1.712 1.13 3.14 2.63 3.465-.28.08-.57.124-.87.124-.21 0-.418-.022-.62-.063.418 1.404 1.63 2.426 3.067 2.455-1.125.94-2.54 1.51-4.078 1.51-.267 0-.528-.02-.785-.05 1.46 1 3.185 1.59 5.04 1.59 6.037 0 9.34-5.39 9.34-10.06 0-.153-.005-.306-.01-.457.64-.5 1.197-1.12 1.637-1.83-.59.28-1.22.47-1.885.557.677-.437 1.198-1.13 1.443-1.955-.633.405-1.336.7-2.084.858C13.88 2.43 13.028 2 12.08 2"></path></svg></a>
+
+
+
+
+        </div>
+
+        <div class="copyright u-textCenter">
+            &copy; 2022 <a href="https://parzivail.com">Parzivail</a>
+            Design with ♥ by <a href="https://goo.gl/Jf1tZe" target="_blank" title="Developer Web FullStack.">@GodoFredoNinja</a>
+        </div>
+    </amp-sidebar>
+
+    <header class="main-header u-bgColor u-container">
+        <nav class="blog-title u-flexCenter">
+
+            <a href="https://parzivail.com" class="logo-link u-flex1">Parzivail</a>
+
+            <button class="hamburgermenu" on="tap:sidebar1.toggle" tabindex="0"><span></span><span></span><span></span></button>
+        </nav>
+    </header>
+
+    <main class="main">
+
+
+        <article class="article u-container">
+            <header class="article-header">
+
+                <div class="u-flexCenter">
+
+
+                    <div class="author u-overflowHidden">
+                        <a href="http://parzivail.com/author/colby/"  class="u-relative u-block author-avatar">
+                            <amp-img class="u-absolute author-image" src=" //www.gravatar.com/avatar/25092a442f00067d7dfa2e08eaa6e315?s&#x3D;250&amp;d&#x3D;mm&amp;r&#x3D;x " width="60" height="60" alt="Colby Newman"> </amp-img>
+                        </a>
+                    </div>
+
+                    <div class="author-left u-flex1 u-overflowHidden">
+                        <a href="http://parzivail.com/author/colby/">Colby Newman</a>
+
+
+                        <div class="author-bio u-block u-overflowHidden u-fontSizeSmaller u-textColorNormal">Programmer, maker, and space-lover.</div>
+
+                        <time class="datetime u-textColorNormal u-fontSizeSmaller u-block u-textColorNormal" datetime="2018-08-17">4 years ago</time>
+                    </div>
+                </div>
+
+                <h1 class="article-title">TI-83 Teardown, Part 2</h1>
+
+                <p class="article-excerpt">Finally getting to the pixie wrangling and commanding the LCD to display images.</p>
+            </header>
+
+                <figure class="article-image u-block u-marginTop30">
+                    <amp-img src="http://parzivail.com/content/images/2018/08/DSC_0046_small.jpg" width="600" height="400" layout="responsive"></amp-img>
+                </figure>
+
+            <div class="article-body"> <p>Hey all!</p>
+<p>This is a part 2 for the <a href="http://parzivail.com/ti-83-teardown-part-1/">first segment of the TI-83 teardown</a>, where we disassembled the calculator and started interfacing with the LCD.</p>
+<p>Whoops! May have lied a bit last time. Before I get to the fun part (programming!) I designed small crimp bracket in SOLIDWORKS to try and, again, minimize wear and tear on the fragile ribbon cable. Am I a bit too paranoid? Maybe. Was it fun? Absolutely!<br />
+Here's what the model turned out looking like:</p>
+<p><amp-img src="http://parzivail.com/content/images/2018/08/7ff4cf3c8998c7babfc4facb0f4cc30a.png" alt="The cool bracket thing" width="887" height="634" layout="responsive"></amp-img></p>
+<p>I 3D printed 2 of them and sandwiched them together around the new ribbon cable, all held together with 2 tiny cotter pins I had to make</p>
+<p><amp-img src="http://parzivail.com/content/images/2018/08/DSC_0036.JPG" alt="Bracket" width="4928" height="3264" layout="responsive"></amp-img></p>
+<p><amp-img src="http://parzivail.com/content/images/2018/08/DSC_0037.JPG" alt="Bracket" width="4928" height="3264" layout="responsive"></amp-img></p>
+<p><strong>NOW</strong> comes the fun part!</p>
+<h4 id="1newconnector">1: New connector</h4>
+<p>The old connector (you know, the IDE one I sawed off) was flakier than I would have liked. So, I soldered up a new one with some perfboard and male headers:</p>
+<p><amp-img src="http://parzivail.com/content/images/2018/08/DSC_0044.JPG" alt="The new connector" width="4928" height="3264" layout="responsive"></amp-img></p>
+<h4 id="2arduinowireup">2: Arduino wireup</h4>
+<p>I did manage to get the pinout for this display (Overall I had to kind of brute-force the pinouts until something worked, as I couldn't find anyone with this specific display version online. Turns out it's a 17-pin interface with a Toshiba T6A04A driver chip, you can find the pinout and Arduino code <a href="https://gist.github.com/parzivail/12ea33cef02794381a06265ff4ef129e">here</a>) and some skeleton Arduino code to get the display running.</p>
+<p><amp-img src="http://parzivail.com/content/images/2018/08/DSC_0046.jpg" alt="The LCD success" width="2988" height="5312" layout="responsive"></amp-img><br />
+<em>Note: I made that image with a tiny GUI utility I made in C# that exports all 96x64 pixels of the display into one big ol' array.</em></p>
+<h4 id="3codeport">3: Code Port</h4>
+<p>The Arduino code was a success, but since C++ is not my forté, I got nothing truly done except displaying static images and updating the whole screen at once. That's no fun, since this is an LCD we're playing with, not a picture frame. I decided to port what I had of my code into C# for use with my Raspberry Pi, which is running <a href="https://developer.microsoft.com/en-us/windows/iot">Windows 10 IoT Core</a>. The code is available on <a href="https://github.com/parzivail/TILCD">GitHub</a> if you're interested.</p>
+ </div>
+
+            <div class="article-tags"><a href="http://parzivail.com/tag/project/" title="project" class="button" >project</a><a href="http://parzivail.com/tag/arduino/" title="arduino" class="button" >arduino</a><a href="http://parzivail.com/tag/programming/" title="programming" class="button" >programming</a></div>
+
+            <div class="share">
+                <ul>
+                    <li class="fb"><a href="https://www.facebook.com/sharer/sharer.php?u=http://parzivail.com/ti-83-teardown-part-2/" target="_blank"><svg height="32" viewBox="-2 -2 32 32" width="32"><path d="M17.9 14h-3v8H12v-8h-2v-2.9h2V8.7C12 6.8 13.1 5 16 5c1.2 0 2 .1 2 .1v3h-1.8c-1 0-1.2.5-1.2 1.3v1.8h3l-.1 2.8z"></path></svg></a></li>
+                    <li class="tw"><a href="http://twitter.com/share?text=TI-83%20Teardown%2C%20Part%202&url=http://parzivail.com/ti-83-teardown-part-2/" target="_blank"><svg height="32" viewBox="-2 -2 32 32" width="32"><path d="M21.3 10.5v.5c0 4.7-3.5 10.1-9.9 10.1-2 0-3.8-.6-5.3-1.6.3 0 .6.1.8.1 1.6 0 3.1-.6 4.3-1.5-1.5 0-2.8-1-3.3-2.4.2 0 .4.1.7.1l.9-.1c-1.6-.3-2.8-1.8-2.8-3.5.5.3 1 .4 1.6.4-.9-.6-1.6-1.7-1.6-2.9 0-.6.2-1.3.5-1.8 1.7 2.1 4.3 3.6 7.2 3.7-.1-.3-.1-.5-.1-.8 0-2 1.6-3.5 3.5-3.5 1 0 1.9.4 2.5 1.1.8-.1 1.5-.4 2.2-.8-.3.8-.8 1.5-1.5 1.9.7-.1 1.4-.3 2-.5-.4.4-1 1-1.7 1.5z"></path></svg></a></li>
+                    <li class="wa"><a href="whatsapp://send?text=TI-83%20Teardown%2C%20Part%202 - http://parzivail.com/ti-83-teardown-part-2/" target="_top"><svg height="30" viewBox="0 0 30 30" width="30"><path d="M22.09 7.87c-1.88-1.88-4.38-2.92-7.05-2.92-5.49 0-9.96 4.47-9.96 9.96 0 1.75.46 3.47 1.33 4.98L5 25.04l5.28-1.38c1.45.79 3.09 1.21 4.76 1.21 5.49 0 9.96-4.47 9.96-9.96 0-2.65-1.03-5.15-2.91-7.04m-7.05 15.32c-1.49 0-2.95-.4-4.22-1.15l-.3-.18-3.13.82.84-3.05-.2-.31C7.2 18 6.76 16.47 6.77 14.91c0-4.56 3.71-8.27 8.28-8.27 2.21 0 4.29.86 5.85 2.43 1.56 1.56 2.42 3.64 2.42 5.85 0 4.56-3.72 8.27-8.28 8.27m4.54-6.2c-.25-.12-1.47-.73-1.7-.81s-.39-.12-.56.12c-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.51.11-.11.25-.29.37-.44.12-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43-.14-.01-.31-.01-.48-.01-.17 0-.44.06-.66.31-.22.25-.87.85-.87 2.08 0 1.22.89 2.41 1.02 2.57.12.17 1.75 2.68 4.25 3.76.59.26 1.06.41 1.42.52.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.18s.21-1.08.14-1.18c-.06-.08-.23-.14-.48-.27"></path></svg></a></li>
+                    <li class="gplus"><a href="https://plus.google.com/share?url=http://parzivail.com/ti-83-teardown-part-2/" target="_blank"><svg height="32" viewBox="4 -4 32 32" width="32"><path d="M8.8 12c-.1 2.9 2 5.7 4.7 6.6 2.6.9 5.8.2 7.5-2 1.3-1.6 1.6-3.6 1.4-5.6h-6.7v2.4h4c-.3 1.2-1.1 2.2-2.3 2.7-2.3 1-5.1-.3-5.8-2.7-.9-2.3.5-5 2.9-5.7 1.4-.5 2.9.1 4.1.8l1.8-1.8c-1.4-1.2-3.2-1.9-5-1.7-3.6.1-6.8 3.4-6.6 7zm18-3v2h-2v2h2v2h2v-2h2v-2h-2V9h-2z"></path></svg></a></li>
+                </ul>
+            </div>
+
+        </article>
+
+
+            <div class="related u-container">
+                <div class="related-title"><span>Related Article</span></div>
+
+                <div class="story">
+                    <a href="http://parzivail.com/procedural-terrain-generaion/" class="story-link u-block u-relative">
+                        <span class="story-border u-flexCenter u-absolute">1</span>
+                        <h3 class="story-title">Generating complex, multi-biome procedural terrain with Simplex noise in PSWG</h3>
+                    </a>
+                </div>
+                <div class="story">
+                    <a href="http://parzivail.com/ti-83-teardown-part-1/" class="story-link u-block u-relative">
+                        <span class="story-border u-flexCenter u-absolute">2</span>
+                        <h3 class="story-title">TI-83 Teardown, Part 1</h3>
+                    </a>
+                </div>
+                <div class="story">
+                    <a href="http://parzivail.com/porsche-seat-to-office-chair/" class="story-link u-block u-relative">
+                        <span class="story-border u-flexCenter u-absolute">3</span>
+                        <h3 class="story-title">Porsche Seat to Office Chair</h3>
+                    </a>
+                </div>
+
+            </div>
+
+    </main>
+
+
+    <footer class="footer">
+        <div class="follow u-textCenter">
+
+                <a href="https://twitter.com/parzivail" rel="nofollow" target="_blank"><svg class="svg-icon" viewBox="0 0 18 18" width="100%" height="100%"><path d="M12.077 2c-1.812 0-3.282 1.582-3.282 3.534 0 .277.03.547.085.806-2.728-.148-5.147-1.555-6.766-3.693-.283.522-.445 1.13-.445 1.777 0 1.226.58 2.308 1.46 2.942-.54-.02-1.05-.178-1.49-.443v.045c0 1.712 1.13 3.14 2.63 3.465-.28.08-.57.124-.87.124-.21 0-.418-.022-.62-.063.418 1.404 1.63 2.426 3.067 2.455-1.125.94-2.54 1.51-4.078 1.51-.267 0-.528-.02-.785-.05 1.46 1 3.185 1.59 5.04 1.59 6.037 0 9.34-5.39 9.34-10.06 0-.153-.005-.306-.01-.457.64-.5 1.197-1.12 1.637-1.83-.59.28-1.22.47-1.885.557.677-.437 1.198-1.13 1.443-1.955-.633.405-1.336.7-2.084.858C13.88 2.43 13.028 2 12.08 2"></path></svg></a>
+
+
+
+
+        </div>
+
+        <div class="copyright u-textCenter u-container">
+            &copy; 2022 <a href="https://parzivail.com">Parzivail</a>
+            Design with ♥ by <a href="https://goo.gl/Jf1tZe" target="_blank" title="Developer Web FullStack.">@GodoFredoNinja</a>
+        </div>
+    </footer>
+</body>
+</html>
